@@ -3,11 +3,7 @@ const app = express();
 const bodyparser = require("body-parser");
 const fs = require('fs');
 
-app.use(bodyparser.json()); //app.use will always be runned
-
-fs.readFile("index.html","utf-8",function(err,data){
-    console.log(data);
-}) //if i dont mention the encoding type then it will return the buffer values
+app.use(bodyparser.json()); //app.use will always run
 
 app.post("/write", function(req,res){
     const message = req.body.message;
@@ -30,7 +26,7 @@ app.post("/write", function(req,res){
 })
 
 app.get("/read",function(req,res){
-    fs.readFile("index.html","utf-8", function(err,data){
+    fs.readFile("index.html","utf-8", function(err,data){ //if i dont mention the encoding type then it will return the buffer values
         console.log(data);
         res.send(data);
     })
